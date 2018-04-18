@@ -6,4 +6,8 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>mutant-detection-parent</name>
+  <modules>    
+    <module>../mutant-detection-api</module>
+	<module>../mutant-detection-rest</module>
+  </modules>
 </project>
