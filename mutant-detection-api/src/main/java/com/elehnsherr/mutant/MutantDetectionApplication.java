@@ -6,8 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.Banner;
 
-
-
 @SpringBootApplication
 public class MutantDetectionApplication implements CommandLineRunner{
 
