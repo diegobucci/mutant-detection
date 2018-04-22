@@ -7,15 +7,13 @@ import com.elehnsherr.mutant.validation.NitrogenBaseCharsSequenceValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
-public class DNADetectionServiceImpl implements DNADetectionService,MutantDetectionService {
+public class DNADetectionServiceImpl implements DNADetectionService{
 
     @Autowired
     public NitrogenBaseCharsSequenceValidator nitrogenBaseCharsSequenceValidator;
@@ -26,6 +24,9 @@ public class DNADetectionServiceImpl implements DNADetectionService,MutantDetect
     @Override
     public boolean isMutantDetected(String[] dna)
             throws InvalidNitrogenBaseCharsSequenceException, InvalidDNATableException {
+        if (dna == null)
+            return false;
+
         validateDNA(dna);
         return isMutant(dna);
     }
@@ -47,35 +48,87 @@ public class DNADetectionServiceImpl implements DNADetectionService,MutantDetect
             return false;
 
         List<String> dnaMatrixRows = Arrays.asList(dna);
-
-        List mutantSequences = DNASequencePredicates.findSequence(dnaMatrixRows,DNASequencePredicates.isDNAMutantSequence());
-        if(mutantSequences.size()>1)
+        long sequencesHorizontally = DNASequencePredicates.findSequenceCount(dnaMatrixRows,DNASequencePredicates.isDNAMutantSequence());
+        if(sequencesHorizontally>1)
             return true;
 
-        List<char[]> dnaCharsList = new ArrayList<>();
-        for (String dnaSequence:dnaMatrixRows){
-            char[] dnaSequenceToCHar = dnaSequence.toCharArray();
-            dnaCharsList.add(dnaSequenceToCHar);
-        }
+        String[][]dnaSequenceMatrix = createDNASequenceMatrix(dna);
 
-        String[] newDnaMatrixRows = new String[dnaCharsList.get(0).length];
-        for (int i = 0; i < dnaCharsList.get(0).length; i++) {
-            newDnaMatrixRows[i] = "";
-            for (char[] dnaChars : dnaCharsList){
-                newDnaMatrixRows[i] = newDnaMatrixRows[i].concat(String.valueOf(dnaChars[i]));
-            }
-        }
+        List<String> dnaMatrixColumns = findDNASequenceVertically(dnaSequenceMatrix);
+        long sequencesVertically = DNASequencePredicates.findSequenceCount(dnaMatrixColumns,DNASequencePredicates.isDNAMutantSequence());
+        if(sequencesVertically+sequencesHorizontally >1)
+            return true;
 
-        dnaMatrixRows = Arrays.asList(newDnaMatrixRows);
-        List mutantSequencesVertically = DNASequencePredicates.findSequence(dnaMatrixRows,DNASequencePredicates.isDNAMutantSequence());
-        mutantSequencesVertically.forEach(dnaS->System.out.println(dnaS));
-        if(mutantSequencesVertically.size()>1)
+        List<String> dnaMatrixDiagonals = findDNASequenceDiagonally(dnaSequenceMatrix);
+        long sequencesDiagonally = DNASequencePredicates.findSequenceCount(dnaMatrixDiagonals,DNASequencePredicates.isDNAMutantSequence());
+        if(sequencesHorizontally+sequencesVertically+sequencesDiagonally >1)
             return true;
 
         return false;
     }
 
 
+    private String[][] createDNASequenceMatrix(String[] dna){
+        String[][] dnaSequenceMatrix = IntStream.range(0, dna.length)
+                        .mapToObj(x -> IntStream.range(0,dna[x].length())
+                                .mapToObj(y -> String.valueOf(dna[x].charAt(y)))
+                                .toArray(String[]::new))
+                        .toArray(String[][]::new);
+        return dnaSequenceMatrix;
+    }
 
+    private List<String> findDNASequenceVertically(String[][] dnaMatrix){
+        List<String> dnaMatrixColumns = new ArrayList<>();
+        for (int column = 0; column < dnaMatrix[0].length; column++) {
+            StringBuffer dnaRow = new StringBuffer();
+            for (int row = 0; row < dnaMatrix.length ; row++) {
+                dnaRow.append(dnaMatrix[row][column]);
+            }
+            dnaMatrixColumns.add(dnaRow.toString());
+        }
+        return dnaMatrixColumns;
+    }
 
+    private List<String> findDNASequenceDiagonally(String[][] dnaMatrix){
+        List<String> dnaMatrixDiagonals = new ArrayList<>();
+        int maxRow = dnaMatrix.length;
+        int maxColumn = dnaMatrix[0].length;
+
+        for (int indexColumn = 0; indexColumn < maxColumn; indexColumn++) {
+            for (int indexRow = 0; indexRow < dnaMatrix.length; indexRow++) {
+                StringBuffer dnaDiagonal = new StringBuffer();
+                int auxRow = indexRow;
+                int auxColumn = indexColumn;
+
+                if( (indexRow - 1)< 0 || (indexColumn -1)<0) {
+                    while (auxColumn < maxColumn && auxRow < maxRow) {
+                        dnaDiagonal.append(dnaMatrix[auxRow][auxColumn]);
+                        auxColumn++;
+                        auxRow++;
+                    }
+                    if (dnaDiagonal.length() >= 4)
+                        dnaMatrixDiagonals.add(dnaDiagonal.toString());
+                }
+            }
+        }
+
+        for (int indexColumn = 0 ; indexColumn < maxColumn ; indexColumn++) {
+            for (int indexRow = 0; indexRow < dnaMatrix.length; indexRow++) {
+                StringBuffer dnaDiagonal = new StringBuffer();
+                int auxRow = indexRow;
+                int auxColumn = indexColumn;
+
+                if( (indexRow - 1)< 0 || (indexColumn -1)<0) {
+                    while (auxColumn < maxColumn && auxRow < maxRow) {
+                        dnaDiagonal.append(dnaMatrix[auxRow][maxColumn-1-auxColumn]);
+                        auxColumn++;
+                        auxRow++;
+                    }
+                    if (dnaDiagonal.length() >= 4)
+                        dnaMatrixDiagonals.add(dnaDiagonal.toString());
+                }
+            }
+        }
+        return dnaMatrixDiagonals;
+    }
 }

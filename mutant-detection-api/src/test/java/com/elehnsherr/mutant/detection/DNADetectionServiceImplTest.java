@@ -24,14 +24,39 @@ public class DNADetectionServiceImplTest {
     }
 
     @Test
-    public void matchMutantInDNASequenceWhenAppearsHorizontally(){
-        boolean result = dnaDetectionServiceImpl.isMutant(new String[]{"ATGCGA","CAGTGC","TTATGT","AAAAGG","CCCCTA","TCACTG"});
+    public void matchMutantInDNASequenceWhenOnlyAppearsHorizontally(){
+        boolean result = dnaDetectionServiceImpl.isMutant(new String[]{"ATGCGA","CAGTGC","TTATGT","GAAAAG","ACCCCT","TCACTG"});
         assertTrue(result);
     }
 
     @Test
-    public void matchMutantInDNASequenceWhenAppearsVertically(){
+    public void noMatchMutantInDNASequenceWhenOnlyAppearsOneHorizontally(){
+        boolean result = dnaDetectionServiceImpl.isMutant(new String[]{"ATGCGA","CAGTGC","TTATGT","GAATAG","ACCCCT","TCACTG"});
+        assertFalse(result);
+    }
+
+    @Test
+    public void matchMutantInDNASequenceWhenOnlyAppearsVertically(){
         boolean result = dnaDetectionServiceImpl.isMutant(new String[]{"ATGCGC","AAGGCC","ATATGC","AGAAGC","CTATAT","TCACTG"});
         assertTrue(result);
     }
+
+    @Test
+    public void matchMutantInDNASequenceWhenOnlyAppearsDiagonally(){
+        boolean result = dnaDetectionServiceImpl.isMutant(new String[]{"ATCTGC","TCTGAG","CACTCA","TGTCTC","CACGAC","ACTGTG"});
+        assertTrue(result);
+    }
+
+    @Test
+    public void matchMutantInDNASequenceWhenAppearsHorizontallyAndVertically(){
+        boolean result = dnaDetectionServiceImpl.isMutant(new String[]{"ATGCGA","CAGTGC","TTATGC","GAAAAC","AGTATC","TCACTG"});
+        assertTrue(result);
+    }
+
+    @Test
+    public void matchMutantInDNASequenceWhenAppearsHorizontallyAndDiagonally(){
+        boolean result = dnaDetectionServiceImpl.isMutant(new String[]{"AAAAGA","CAGTGT","TTGTGC","GAAGAC","AGTAGC","TCACTG"});
+        assertTrue(result);
+    }
+
 }
