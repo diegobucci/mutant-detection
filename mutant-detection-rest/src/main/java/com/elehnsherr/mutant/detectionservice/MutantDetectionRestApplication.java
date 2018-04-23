@@ -1,4 +1,4 @@
-package com.elehnsherr.mutant.mutantdetectionrest;
+package com.elehnsherr.mutant.detectionservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -25,7 +25,7 @@ public class MutantDetectionApplication implements CommandLineRunner{
 	    if(args!=null && args.length>0) {
             System.out.println("Starting Mutant Detection API ......starting to process DNA");
             boolean isDetected = dnaDetectionServiceImpl.isMutantDetected(args);
-            System.out.println("DNA Sequence provided result = " + (isDetected ? "IS MUTANT" : "NOT MUTANT"));
+            System.out.println("DNA Sequence provided result = " + (isDetected ? "IS MUTANT!!" : "NOT MUTANT"));
         }
     }
 }
