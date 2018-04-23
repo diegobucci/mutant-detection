@@ -1,4 +1,4 @@
-package com.elehnsherr.mutant.exception;
+package com.elehnsherr.api.exception;
 
 public class InvalidDNATableException extends Exception{
 

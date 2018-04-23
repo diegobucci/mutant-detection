@@ -1,4 +1,4 @@
-package com.elehnsherr.mutant.detection;
+package com.elehnsherr.api.detection;
 
 import java.util.Arrays;
 import java.util.List;

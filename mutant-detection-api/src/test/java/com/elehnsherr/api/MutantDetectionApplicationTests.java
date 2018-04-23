@@ -1,4 +1,4 @@
-package com.elehnsherr.mutant;
+package com.elehnsherr.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.elehnsherr.mutant.validation;
+package com.elehnsherr.api.validation;
 
 
 import org.junit.Test;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class DNATableValidatorTest {
 
     @Autowired
-    private DNATableValidator DNATableValidator;
+    private com.elehnsherr.api.validation.DNATableValidator DNATableValidator;
 
     @Test
     public void validateDNATableWhenIsSquareMatrix(){

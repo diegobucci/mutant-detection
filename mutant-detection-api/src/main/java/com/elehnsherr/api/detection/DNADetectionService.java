@@ -1,7 +1,7 @@
-package com.elehnsherr.mutant.detection;
+package com.elehnsherr.api.detection;
 
-import com.elehnsherr.mutant.exception.InvalidDNATableException;
-import com.elehnsherr.mutant.exception.InvalidNitrogenBaseCharsSequenceException;
+import com.elehnsherr.api.exception.InvalidNitrogenBaseCharsSequenceException;
+import com.elehnsherr.api.exception.InvalidDNATableException;
 
 public interface DNADetectionService extends MutantDetectionService{
 

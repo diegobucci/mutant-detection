@@ -6,14 +6,15 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "dna")
-public class DNA {
+public class DNASequence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    private String sequence;
+    private String[] dna;
+
+    private boolean isMutant;
 
     public Long getId() {
         return id;
@@ -23,11 +24,19 @@ public class DNA {
         this.id = id;
     }
 
-    public String getSequence() {
-        return sequence;
+    public String[] getDna(){
+        return dna;
     }
 
-    public void setSequence(String sequence) {
-        this.sequence = sequence;
+    public void setDna(String[] dna) {
+        this.dna = dna;
+    }
+
+    public boolean isMutant() {
+        return isMutant;
+    }
+
+    public void setMutant(boolean mutant) {
+        isMutant = mutant;
     }
 }

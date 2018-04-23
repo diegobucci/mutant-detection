@@ -1,7 +1,7 @@
-package com.elehnsherr.mutant;
+package com.elehnsherr.api;
 
 
-import com.elehnsherr.mutant.detection.DNADetectionServiceImpl;
+import com.elehnsherr.api.detection.DNADetectionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;

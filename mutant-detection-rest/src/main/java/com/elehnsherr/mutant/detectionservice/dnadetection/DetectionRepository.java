@@ -1,8 +1,8 @@
 package com.elehnsherr.mutant.detectionservice.dnadetection;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class DetectionRepository {
+public interface DetectionRepository extends JpaRepository<DNASequence, Long> {
+
 
 }

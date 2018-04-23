@@ -1,4 +1,4 @@
-package com.elehnsherr.mutant.validation;
+package com.elehnsherr.api.validation;
 
 public interface Validator {
 

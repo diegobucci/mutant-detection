@@ -1,6 +1,7 @@
-package com.elehnsherr.mutant.validation;
+package com.elehnsherr.api.validation;
 
 
+import com.elehnsherr.api.validation.NitrogenBaseCharsSequenceValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

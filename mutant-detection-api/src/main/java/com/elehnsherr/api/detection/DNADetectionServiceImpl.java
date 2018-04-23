@@ -1,9 +1,9 @@
-package com.elehnsherr.mutant.detection;
+package com.elehnsherr.api.detection;
 
-import com.elehnsherr.mutant.exception.InvalidDNATableException;
-import com.elehnsherr.mutant.exception.InvalidNitrogenBaseCharsSequenceException;
-import com.elehnsherr.mutant.validation.DNATableValidator;
-import com.elehnsherr.mutant.validation.NitrogenBaseCharsSequenceValidator;
+import com.elehnsherr.api.validation.NitrogenBaseCharsSequenceValidator;
+import com.elehnsherr.api.exception.InvalidDNATableException;
+import com.elehnsherr.api.exception.InvalidNitrogenBaseCharsSequenceException;
+import com.elehnsherr.api.validation.DNATableValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
