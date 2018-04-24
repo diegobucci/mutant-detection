@@ -5,7 +5,7 @@
 
 	<groupId>com.elehnsherr.api</groupId>
 	<artifactId>mutant-detection-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-FINAL</version>
 	<packaging>jar</packaging>
 
 	<name>mutant-detection-api</name>
@@ -55,6 +55,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

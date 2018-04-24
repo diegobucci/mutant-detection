@@ -5,7 +5,7 @@
 
 	<groupId>com.elehnsherr.mutant</groupId>
 	<artifactId>mutant-detection-rest</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-FINAL</version>
 	<packaging>jar</packaging>
 
 	<name>mutant-detection-rest</name>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>com.elehnsherr.api</groupId>
             <artifactId>mutant-detection-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0-FINAL</version>
         </dependency>
 
         <dependency>

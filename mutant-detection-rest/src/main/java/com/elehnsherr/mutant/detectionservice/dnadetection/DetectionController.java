@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -33,10 +32,5 @@ public class DetectionController {
         } catch (InvalidDNATableException e) {
             throw new InvalidDNASequenceDetectedException();
         }
-    }
-
-    @RequestMapping(method = RequestMethod.GET,path = "stats", produces = "application/json")
-    public List<DNASequence> getOrders() {
-        return detectionService.findAllDNASequences();
     }
 }
