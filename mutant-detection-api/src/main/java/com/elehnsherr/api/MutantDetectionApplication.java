@@ -9,20 +9,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MutantDetectionApplication implements CommandLineRunner{
+public class MutantDetectionApplication implements CommandLineRunner {
 
     @Autowired
     private DNADetectionServiceImpl dnaDetectionServiceImpl;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         SpringApplication app = new SpringApplication(MutantDetectionApplication.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
-	}
+    }
 
     @Override
-    public void run(String... args) throws Exception{
-	    if(args!=null && args.length>0) {
+    public void run(String... args) throws Exception {
+        if (args != null && args.length > 0) {
             System.out.println("Starting Mutant Detection API ......starting to process DNA");
             boolean isDetected = dnaDetectionServiceImpl.isMutantDetected(args);
             System.out.println("DNA Sequence provided result = " + (isDetected ? "IS MUTANT!!" : "NOT MUTANT"));

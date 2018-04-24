@@ -4,6 +4,9 @@ package com.elehnsherr.mutant.detectionservice.dnadetection;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Entity that handles a valid DNA Sequence
+ */
 @Entity
 @Table(name = "dna")
 public class DNASequence {

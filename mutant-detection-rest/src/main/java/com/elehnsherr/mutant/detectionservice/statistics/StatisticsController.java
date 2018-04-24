@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * REST Controller that provides a service to get statistics based on stored DNA Sequences.
+ */
 @RestController
 @RequestMapping("/")
 public class StatisticsController {
