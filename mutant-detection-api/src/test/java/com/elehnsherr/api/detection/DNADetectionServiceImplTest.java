@@ -1,7 +1,6 @@
 package com.elehnsherr.api.detection;
 
 
-import com.elehnsherr.api.detection.DNADetectionServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
